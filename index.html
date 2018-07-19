@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type='text/javascript' src='tracery.js' ></script>    
+  <meta charset="utf-8">
+  <style>
+            body
+            {
+              color: black !important;
+            }
+            h1
+            {
+              display: inline-flex;
+              padding:5px;font-size:30px;color:#000000;
+              text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+              0px 8px 13px rgba(0,0,0,0.1),
+              0px 18px 23px rgba(0,0,0,0.1);
+            }
+            h2
+            {
+              font-size:15px;background-color: white;color:#000000;
+            }
+            button
+            {
+              border:4px solid #f94df8;-webkit-box-shadow: #B4B5B5 32px 32px 32px  ;-moz-box-shadow: #B4B5B5 32px 32px 32px;
+              box-shadow: #B4B5B5 32px 32px 32px  ; -webkit-border-radius: 50px; -moz-border-radius: 50px;border-radius: 50px;
+              font-size:30px;font-family:arial black, sans-serif; padding: 14px 14px 14px 14px; text-decoration:none; display:
+              inline-block;text-shadow: 6px 6px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+              background-color: #fb83fa; background-image: -webkit-gradient(linear, left top, left bottom, from(#fb83fa), to(#e93cec));
+              background-image: -webkit-linear-gradient(top, #fb83fa, #e93cec);
+              background-image: -moz-linear-gradient(top, #fb83fa, #e93cec);
+              background-image: -ms-linear-gradient(top, #fb83fa, #e93cec);
+              background-image: -o-linear-gradient(top, #fb83fa, #e93cec);
+              background-image: linear-gradient(to bottom, #fb83fa, #e93cec);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#fb83fa, endColorstr=#e93cec);
+            }
+  </style>
+</head>
+<body>
+    <div class="wrapper">
+      <button id="gen_button">Tweet</button>
+      <h1><div id="content"></div></h1>
+      <div id="artist-statement">
+          <h1>Nspir8shunl</h1>
+          <h2><p>Artist: Jeremy Lafond</p>
+          <p>
+            People are really judgy. Especially when it comes to your major.
+          </p></h2>
+          </p>
+      </div>
+    </div>
+<script>
+	'use strict';
+	let myRules =
+	{
+  "origin" : ["#[majorA:#majors#][majorB:#majors#]content#"
+  ],
+
+  "content" :[
+  "How #majorA# majors see #majorB# majors: #Gif# How #majorB# majors see #majorA# majors: #Gif#. How the rest of the world sees both of them: #Gif2#"
+  ],
+
+  "majors" : [
+    "Computer Science ",
+    "Psychology",
+    "Mathematics"
+  ],
+
+  "reax" : [
+  "https://giphy.com/gifs/spongebob-26ufnwz3wDUli7GU0",
+  "https://giphy.com/gifs/sloth-lazy-definition-rU5KhwXMUyjza",
+  "https://giphy.com/gifs/cat-fat-lazy-YVm9sOmwsdLe8", 
+  "https://giphy.com/gifs/cat-cartoon-move-a5MFvAwc6GPf2",
+  "https://giphy.com/gifs/lazy-scott-pilgrim-complaining-VMtTNzgBjvlHG", 
+  "https://giphy.com/gifs/thegoodfilms-kevin-spacey-american-beauty-movie-Hn1VPQRmzEZUc",
+  "https://giphy.com/gifs/stupid-dumb-confused-PoMaeOvC4SHUQ",
+  "https://giphy.com/gifs/10FTcFr6VbLNFS",
+  "https://giphy.com/gifs/adultswim-rick-and-morty-adult-swim-stupid-people-FJovzGlbuoEXm",
+  "https://giphy.com/gifs/angry-the-office-screaming-3t7RAFhu75Wwg",
+  "https://giphy.com/gifs/XrBiWQU23trHy",
+  "https://giphy.com/gifs/1BXa2alBjrCXC",
+  "https://giphy.com/gifs/cat-hacker-webs-o0vwzuFwCGAFO",
+  "https://giphy.com/gifs/reaction-uSXTDFYDWpelW",
+  "https://giphy.com/gifs/computer-disgusted-hammer-12bVDtXPOzYwda"
+  ],
+
+  "base":[
+  "https://giphy.com/gifs/agentm-agent-m-RBeddeaQ5Xo0E", 
+  "https://giphy.com/gifs/cat-discussion-lists-5LU6ZcEGBbhVS",
+  "https://giphy.com/gifs/tea-kermit-the-frog-sipping-3o85xGocUH8RYoDKKs",
+  "https://giphy.com/gifs/confused-futurama-suspicious-ANbD1CCdA3iI8",
+  "https://giphy.com/gifs/why-ryan-reynolds-1M9fmo1WAFVK0",
+  "https://giphy.com/gifs/mashable-l3q2K5jinAlChoCLS",
+  "https://giphy.com/gifs/9jumpin-wow-nice-well-done-xT77XWum9yH7zNkFW0",
+  "https://giphy.com/gifs/stoner-sees-isopropyl-xSM46ernAUN3y",
+  "https://giphy.com/gifs/3oAt2dA6LxMkRrGc0g",
+  "https://giphy.com/gifs/reaction-meme-sarcasm-xT9IgFlWsUMDFzVIu4",
+  "https://giphy.com/gifs/reaction-gif-fzpB4zr3aH2s8"
+  ],
+
+  "Gif": [
+  "#reax#"
+  ],
+
+  "Gif2": [
+  "#base#"
+  ]
+}
+	let outputText = "Inspire";
+	let myGrammar = tracery.createGrammar(myRules);
+	document.getElementById("gen_button").addEventListener("touchstart",
+	function()
+	{
+		let result = myGrammar.flatten("#origin#");
+		outputText = result;
+		let genContent = document.createElement("p");
+		genContent.innerHTML = outputText;
+		document.getElementById("content").appendChild(genContent);
+	});
+  document.getElementById("gen_button").addEventListener("click",
+</script>
+</body>
+</html>
